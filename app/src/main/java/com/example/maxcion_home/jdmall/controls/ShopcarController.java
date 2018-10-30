@@ -83,7 +83,7 @@ public class ShopcarController extends BaseController {
         map.put("isDefault", "false");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.RECEIVEADDRESS_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(
                     rResult.result, RreceivrAddress.class);
 
@@ -103,7 +103,7 @@ public class ShopcarController extends BaseController {
         map.put("isDefault", address.isDefault + "");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.ADDADDRESS_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseObject(rResult.result, RaddressBean.class);
         }
         return null;
@@ -117,7 +117,7 @@ public class ShopcarController extends BaseController {
         }
         jsonString = NetWorkUtil.doGet(url + "?fcode=" + code);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, Rarea.class);
         }
         return null;
@@ -129,7 +129,7 @@ public class ShopcarController extends BaseController {
         map.put("isDefault", "true");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.RECEIVEADDRESS_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             List<RreceivrAddress> addressList = JSON.parseArray(
                     rResult.result, RreceivrAddress.class);
             if (addressList.size()>0){
@@ -145,7 +145,7 @@ public class ShopcarController extends BaseController {
         map.put("id", id + "");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.DELSHOPCAR_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return "删除成功";
         }
         return rResult.errorMsg;
@@ -156,7 +156,7 @@ public class ShopcarController extends BaseController {
         map.put("userId", userId + "");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.SHOPCAR_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, Rshopcar.class);
         }
         return null;

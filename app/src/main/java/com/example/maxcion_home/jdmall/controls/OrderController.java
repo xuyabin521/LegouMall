@@ -57,7 +57,7 @@ public class OrderController extends BaseController {
         map.put("oid",oid+"");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.CANCLEORDER_URL,map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success){
+        if (rResult!=null && rResult.success){
             return "恭喜您收到宝贝";
         }
         return rResult.errorMsg;
@@ -69,7 +69,7 @@ public class OrderController extends BaseController {
         map.put("oid",oid+"");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.CONFIRMORDER_URL,map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success){
+        if (rResult!=null && rResult.success){
             return "恭喜您收到宝贝";
         }
         return rResult.errorMsg;
@@ -79,7 +79,7 @@ public class OrderController extends BaseController {
         String jsonString = NetWorkUtil.doGet(
                 "http://mall.520it.com/deliver?userId=" + uid + "&oid=" + oid);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success){
+        if (rResult!=null && rResult.success){
             return "已提醒卖家发货";
         }
         return rResult.errorMsg;
@@ -107,7 +107,7 @@ public class OrderController extends BaseController {
         map.put("userId",uid+"");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.GETORDERBYSTATUS_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success){
+        if (rResult!=null && rResult.success){
             return JSON.parseArray(rResult.result, RorderList.class);
         }
         return null;

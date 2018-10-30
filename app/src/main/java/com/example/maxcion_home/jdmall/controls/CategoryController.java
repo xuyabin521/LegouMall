@@ -58,7 +58,7 @@ public class CategoryController extends BaseController {
         HashMap<String, String> initProductSendArg = initProductSendArg(value);
         String jsonString = NetWorkUtil.doPost(NetWorkCons.PRODUCTLIST_URL, initProductSendArg);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             try {
                 JSONObject jsonObject = new JSONObject(rResult.result);
                 String rows = jsonObject.getString("rows");
@@ -93,7 +93,7 @@ public class CategoryController extends BaseController {
     private List<Rbrand> handleBrand(int categoryId) {
         String jsonString = NetWorkUtil.doGet(NetWorkCons.BRAND_URL + "?categoryId=" + categoryId);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, Rbrand.class);
         }
         return null;
@@ -102,7 +102,7 @@ public class CategoryController extends BaseController {
     private List<RsubCategory> handleSubCategory(int value) {
         String jsonString = NetWorkUtil.doGet(NetWorkCons.CATEGORY_URL + "?parentId=" + value);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, RsubCategory.class);
         }
         return new ArrayList<RsubCategory>();
@@ -112,7 +112,7 @@ public class CategoryController extends BaseController {
         List<RcategoryItem> categorys = new ArrayList<>();
         String jsonString = NetWorkUtil.doGet(NetWorkCons.CATEGORY_URL);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, RcategoryItem.class);
         } else {
             return categorys;

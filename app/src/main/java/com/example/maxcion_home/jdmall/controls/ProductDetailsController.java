@@ -83,7 +83,7 @@ public class ProductDetailsController extends BaseController {
         String jsonStr = NetWorkUtil.doPost(NetWorkCons.COMMENTDETAIL_URL,
                 map);
         RResult rResult = JSON.parseObject(jsonStr, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, RcommentDetail.class);
         }
         return null;
@@ -95,7 +95,7 @@ public class ProductDetailsController extends BaseController {
         String jsonString = NetWorkUtil.doPost(NetWorkCons.COMMENTCOUNT_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
 
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseObject(rResult.result, RcommentCount.class);
         }
         return null;
@@ -107,7 +107,7 @@ public class ProductDetailsController extends BaseController {
         map.put("type", "1");
         String jsonString = NetWorkUtil.doPost(NetWorkCons.PRODUCTCOMMENT_URL, map);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, RgoodComment.class);
         }
         return null;
@@ -116,7 +116,7 @@ public class ProductDetailsController extends BaseController {
     private RproductInfo handleProductIntroduce(int pid) {
         String jsonString = NetWorkUtil.doGet(NetWorkCons.PRODUCTINFO_URL + "?id=" + pid);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success == true) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseObject(rResult.result, RproductInfo.class);
         }
         return null;

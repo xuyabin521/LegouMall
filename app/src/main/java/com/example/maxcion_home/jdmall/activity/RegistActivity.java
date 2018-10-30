@@ -45,7 +45,7 @@ public class RegistActivity extends BaseActivity {
     protected void handlerMessage(Message msg) {
         if (msg.what==IdiyMessage.REGIST_ACTION_RESULT){
             RResult rResult = (RResult) msg.obj;
-            if (rResult.success){
+            if (rResult!=null && rResult.success){
                 tip("注册成功");
                 finish();
             }else {

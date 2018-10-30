@@ -133,7 +133,7 @@ public class SettleActivity extends BaseActivity {
     }
 
     private void handleAddOredere(RResult rResult) {
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             ROrderParams rOrderParams = JSON.parseObject(rResult.result, ROrderParams.class);
             if (rOrderParams.errorType == 1) {
                 tip("您来晚了，小店商品被抢空了~~");
