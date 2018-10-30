@@ -3,9 +3,7 @@ package com.example.maxcion_home.jdmall.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,8 +70,10 @@ public class ShopCarFragment extends BaseFragment implements CategoryTopAdapter.
         initView();
         mPchoice = new ArrayList();
         JDApplication application = (JDApplication) getActivity().getApplication();
-        userId = application.mRLoginResult.id;
-        mControl.sendAsyncMessage(IdiyMessage.SHOPCAR_LIST_ACTION, userId);
+        if (application.mRLoginResult != null) {
+            userId = application.mRLoginResult.id;
+            mControl.sendAsyncMessage(IdiyMessage.SHOPCAR_LIST_ACTION, userId);
+        }
     }
 
     @Override
@@ -155,12 +155,12 @@ public class ShopCarFragment extends BaseFragment implements CategoryTopAdapter.
     @OnClick(R.id.settle_tv)
     public void onViewClicked() {
         Intent intent = new Intent(getContext(), SettleActivity.class);
-        if (mPchoice.size()==0){
-            Toast.makeText(getContext(),"请选择商品",Toast.LENGTH_SHORT).show();
+        if (mPchoice.size() == 0) {
+            Toast.makeText(getContext(), "请选择商品", Toast.LENGTH_SHORT).show();
             return;
         }
         intent.putExtra("CHOOSE_PRODUCT_LIST", (Serializable) mPchoice);
-        intent.putExtra("CHOOSE_ALL_MONEY",allMoney);
+        intent.putExtra("CHOOSE_ALL_MONEY", allMoney);
         getActivity().startActivity(intent);
     }
 }

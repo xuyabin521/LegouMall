@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,12 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.maxcion_home.jdmall.R;
@@ -95,22 +91,26 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private void handleGetYouLike(ArrayList<RgetLikeRows> obj) {
         GetYouLikeKillAdapter adapter = new GetYouLikeKillAdapter();
         adapter.setmData(obj, getContext());
-        RecyclerView.LayoutManager manner = new GridLayoutManager(getContext(),
-                2, LinearLayoutManager.VERTICAL, false);
-        manner.setAutoMeasureEnabled(true);
-        recommendGv.setLayoutManager(manner);
-        recommendGv.setAdapter(adapter);
+        if (recommendGv!=null) {
+            RecyclerView.LayoutManager manner = new GridLayoutManager(getContext(),
+                    2, LinearLayoutManager.VERTICAL, false);
+            manner.setAutoMeasureEnabled(true);
+            recommendGv.setLayoutManager(manner);
+            recommendGv.setAdapter(adapter);
+        }
     }
 
     private void handleSecondKillResult(ArrayList<RsecKillRow> obj) {
         secondKillAdapter = new SecondKillAdapter();
         secondKillAdapter.setmData(obj, getContext());
         secondKillAdapter.setOnItemClickListener(this);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(
-                getContext(),
-                LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(secondKillAdapter);
+        if (recyclerView!=null) {
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(
+                    getContext(),
+                    LinearLayoutManager.HORIZONTAL, false);
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setAdapter(secondKillAdapter);
+        }
     }
 
     private void handleBannerResult(ArrayList<Banner> obj) {
@@ -165,8 +165,10 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     protected void initView() {
         loadImage();
-        adVp.addOnPageChangeListener(this);
-        adVp.setAdapter(mAdAdapter);
+        if (adVp!=null) {
+            adVp.addOnPageChangeListener(this);
+            adVp.setAdapter(mAdAdapter);
+        }
     }
 
     private void loadImage() {

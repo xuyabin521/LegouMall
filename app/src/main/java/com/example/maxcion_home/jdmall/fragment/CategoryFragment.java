@@ -72,20 +72,19 @@ public class CategoryFragment extends BaseFragment implements CategoryTopAdapter
         categoryTopAdapter = new CategoryTopAdapter();
         categoryTopAdapter.setmData(obj, getContext());
         categoryTopAdapter.setOnItemClickListener(this);
-        LinearLayoutManager manner = new LinearLayoutManager(getContext());
-        topLv.setLayoutManager(manner);
-        topLv.setAdapter(categoryTopAdapter);
-        topLv.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                if(topLv.findViewHolderForAdapterPosition(0)!=null )
-                {
-                    topLv.findViewHolderForAdapterPosition(0).itemView.performClick();
+        if (topLv!=null) {
+            LinearLayoutManager manner = new LinearLayoutManager(getContext());
+            topLv.setLayoutManager(manner);
+            topLv.setAdapter(categoryTopAdapter);
+            topLv.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (topLv.findViewHolderForAdapterPosition(0) != null) {
+                        topLv.findViewHolderForAdapterPosition(0).itemView.performClick();
+                    }
                 }
-            }
-        },50);
+            }, 50);
+        }
     }
 
     @Override

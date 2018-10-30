@@ -89,23 +89,25 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private String initUserLevel() {
-        String level = null;
-        switch (mRLoginResult.userLevel) {
-            case 1:
-                level = "注册会员";
-                break;
-            case 2:
-                level = "铜牌会员";
-                break;
-            case 3:
-                level = "银牌会员";
-                break;
-            case 4:
-                level = "金牌会员";
-                break;
-            case 5:
-                level = "钻石会员";
-                break;
+        String level = "";
+        if (mRLoginResult!=null) {
+            switch (mRLoginResult.userLevel) {
+                case 1:
+                    level = "注册会员";
+                    break;
+                case 2:
+                    level = "铜牌会员";
+                    break;
+                case 3:
+                    level = "银牌会员";
+                    break;
+                case 4:
+                    level = "金牌会员";
+                    break;
+                case 5:
+                    level = "钻石会员";
+                    break;
+            }
         }
         return level;
     }
