@@ -250,6 +250,7 @@ public class HomeActivity extends FragmentActivity implements IBottomBarClickLis
     }
 
     private void toProductActivity(String result) {
+        Log.d("HomeActivity","扫描出的二维码是："+result);
         Intent toProductDetial = new Intent(HomeActivity.this,ProductDetialsActivity.class);
         toProductDetial.putExtra("productId",Integer.valueOf(result));
         startActivity(toProductDetial);

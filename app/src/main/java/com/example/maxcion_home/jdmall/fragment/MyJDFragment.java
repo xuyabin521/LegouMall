@@ -71,9 +71,11 @@ public class MyJDFragment extends BaseFragment implements View.OnClickListener {
         homeActivity.findViewById(R.id.logout_btn).setOnClickListener(this);
         JDApplication jdApplication = (JDApplication) getActivity().getApplication();
         mRLoginResult = jdApplication.mRLoginResult;
-        userNameTv.setText(mRLoginResult.userName);
-        waitPayTv.setText(mRLoginResult.waitPayCount + "");
-        waitReceiveTv.setText(mRLoginResult.waitReceiveCount + "");
+        if (mRLoginResult!=null) {
+            userNameTv.setText(mRLoginResult.userName);
+            waitPayTv.setText(mRLoginResult.waitPayCount + "");
+            waitReceiveTv.setText(mRLoginResult.waitReceiveCount + "");
+        }
         String level = initUserLevel();
         userLevelTv.setText(level);
         myjdOrder.setOnClickListener(new View.OnClickListener() {

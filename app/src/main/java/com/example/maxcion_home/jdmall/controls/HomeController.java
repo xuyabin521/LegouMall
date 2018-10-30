@@ -48,7 +48,7 @@ public class HomeController extends BaseController {
         ArrayList<RsecKillRow> rSecKillRow = new ArrayList<>();
         String jsonString = NetWorkUtil.doGet(NetWorkCons.SECKILL_URL);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             Rseckill rSeckill = JSON.parseObject(rResult.result, Rseckill.class);
             rSecKillRow = (ArrayList<RsecKillRow>) JSON.parseArray(rSeckill.rows, RsecKillRow.class);
             return rSecKillRow;
@@ -60,7 +60,7 @@ public class HomeController extends BaseController {
         ArrayList<Banner> rBanner = new ArrayList<>();
         String jsonString = NetWorkUtil.doGet(NetWorkCons.BANNER_URL + "?adKind=" + value);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             return JSON.parseArray(rResult.result, Banner.class);
         }
         return rBanner;
@@ -70,7 +70,7 @@ public class HomeController extends BaseController {
         ArrayList<RgetLikeRows> youLike = new ArrayList<>();
         String jsonString = NetWorkUtil.doGet(NetWorkCons.GETYOURFAV_URL);
         RResult rResult = JSON.parseObject(jsonString, RResult.class);
-        if (rResult.success) {
+        if (rResult!=null && rResult.success) {
             RgetLikeResult rgetLikeResult = JSON.parseObject(rResult.result, RgetLikeResult.class);
             youLike = (ArrayList<RgetLikeRows>) JSON.parseArray(rgetLikeResult.rows, RgetLikeRows.class);
             return youLike;

@@ -135,8 +135,11 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                     @Override
                     public void run() {
                         int currentItem = adVp.getCurrentItem();
-                        currentItem = (currentItem + 1) % mBannerList.size();
+                        if (mBannerList!=null&&mBannerList.size()>0) {
+                            currentItem = (currentItem + 1) % mBannerList.size();
+                        }
                         adVp.setCurrentItem(currentItem);
+
                     }
                 });
             }
